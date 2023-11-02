@@ -64,19 +64,17 @@
         <li>Facebook [deleted]</li>
         <li>Instagram [deleted]</li>
     </div>
-     <input type="hidden" name="likeCount" value="0">
-    <button type="button" onclick="like()">Like</button>
-  </form>
+    <p><button onclick="like()">Like</button>
+  <span id="likeCount">0</span>
 
   <script>
+    var count = 0;
+
     function like() {
-      var likeCountInput = document.querySelector('input[name="likeCount"]');
-      var likeCount = parseInt(likeCountInput.value);
-      likeCount++;
-      likeCountInput.value = likeCount;
-      alert('You liked this! Total likes: ' + likeCount);
+      count++;
+      document.getElementById("likeCount").innerText = count;
     }
-  </script>
+  </script></p>
 <p><video width="320" height="180" controls>
     <source src="android in spaaace.mp4" type="video/mp4">
     Your browser does not support the video tag.
