@@ -87,42 +87,28 @@
          <li><img src="instagramlogo.png" alt="check your network connection" width="30"><a href="https://instagram.com/200alef">Instagram</a></li>
          <li><img src="xboxlogo.png" alt="check your network connection" width="30">Xbox: untitlediso</li>
          <li><img src="vk.png" alt="check your network connection" width="30">Vk: id858513169</li>
-    </div>  
-<input type="text" id="messageInput" placeholder="Type your message">
-  
-  <!-- Send button -->
-  <button onclick="sendMessage()">Send</button>
+    </div>
+        <h2><img src="vip.png" atl="check your network connection" width="30"> Redeem Code:</h2>
+        <form id="accessForm" onsubmit="checkCode(event)">
+  <label for="code">The secret code man:</label><br>
+  <input type="text" id="code" name="code" placeholder="Put it here NIGGA">
+  <button type="submit">click</button>
+</form>
 
-  <!-- Firebase configuration -->
-  <script>
-    // Your web app's Firebase configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyDTmNnfwyQnI3kCM0IiYcV-uW-v6ByLLK0",
-      authDomain: "website-e1f32.firebaseapp.com",
-      projectId: "website-e1f32",
-      storageBucket: "website-e1f32.appspot.com",
-      messagingSenderId: "621808735956",
-      appId: "1:621808735956:web:2a7fedad30c245e990cd41"
-    };
-    
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-rId: "621808735956",
-  appId: "1:621808735956:web:2a7fedad30c245e990cd41
-    // Function to send message
-    function sendMessage() {
-      const messageInput = document.getElementById('messageInput').value;
-      if (messageInput.trim() !== '') {
-        firebase.database().ref('messages').push().set({
-          message: messageInput,
-          timestamp: firebase.database.ServerValue.TIMESTAMP
-        });
-        document.getElementById('messageInput').value = ''; // Clear input field
-      } else {
-        alert('Please type a message before sending.');
-      }
-    }
-  </script>
+<div id="result"></div>
+
+<script>
+function checkCode(event) {
+  event.preventDefault();
+  var passcode = document.getElementById("code").value;
+  if (passcode === "untitled") {
+    window.location.href = "https://github.com/untitlediso";
+  } else {
+    document.getElementById("result").innerHTML = "Haha not the right code";
+  }
+}
+</script>
+
 <p>All rights reserved for Untitled. Website still under construction...</p>
 </body>
 </html>
