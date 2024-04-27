@@ -33,6 +33,20 @@
             padding: 0;
         }
     </style>
+    <style>
+  body {
+    transition: background-color 0.5s ease;
+  }
+  
+  .dark-mode {
+    background-color: #222;
+    color: #fff;
+  }
+  
+  .container {
+    padding: 20px;
+  }
+      </style>
 </head>
 
 <body>
@@ -115,5 +129,16 @@ function checkCode(event) {
 
 <p>All rights reserved for Untitled. Website still under construction...</p>
     <a href="#">Jump to top</a>
+<div class="container">
+  <h1>Dark Mode Example</h1>
+  <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+  <p>This is some example text.</p>
+</div>
+<script>
+  function toggleDarkMode() {
+    const body = document.body;
+    body.classList.toggle('dark-mode');
+  }
+</script>
 </body>
 </html>
