@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minesweeper</title>
+<style>
+    .board {
+        display: inline-block;
+        border: 1px solid #999;
+    }
+    .cell {
+        width: 20px;
+        height: 20px;
+        border: 1px solid #ccc;
+        background-color: #eee;
+        display: inline-block;
+        text-align: center;
+        line-height: 20px;
+    }
+    .mine {
+        background-color: #f00;
+        color: #fff;
+    }
+</style>
+</head>
+<body>
+    <h2> <img src="minesweeper.gif" alt="minesweeper" width="50"> Minesweeper:</h2>
+<div id="board"></div>
+<script>
+    const rows = 8;
+    const cols = 8;
+    const mines = 10;
+    let board = [];
+
+    function createBoard() {
+        for (let i = 0; i < rows; i++) {
+            board[i] = [];
+            for (let j = 0; j < cols; j++) {
+                board[i][j] = { mine: false, count: 0, revealed: false };
+            }
+        }
+
+        // Place mines randomly
+        let placedMines = 0;
+        while (placedMines < mines) {
+            const row = Math.floor(Math.random() * rows);
+            const col = Math.floor(Math.random() * cols);
+            if (!board[row][col].mine) {
+                board[row][col].mine = true;
+                placedMines++;
+            }
+        }
+
+        // Calculate counts
+        for (let i = 0; i < rows; i++) {
+            for (let j = 0; j < cols; j++) {
+                if (!board[i][j].mine) {
+                    for (let ii = Math.max(0, i - 1); ii < Math.min(rows, i + 2); ii++) {
+                        for (let jj = Math.max(0, j - 1); jj < Math.min(cols, j + 2); jj++) {
+                            if (board[ii][jj].mine) {
+                                board[i][j].count++;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    function reveal(row, col) {
+        if (row < 0 || col < 0 || row >= rows || col >= cols || board[row][col].revealed) return;
+
+        const cell = document.getElementById(`cell-${row}-${col}`);
+        if (board[row][col].mine) {
+            cell.classList.add('mine');
+            alert('Boomb!');
+        } else {
+            board[row][col].revealed = true;
+            cell.innerHTML = board[row][col].count || '';
+            cell.style.backgroundColor = '#ccc';
+            if (board[row][col].count === 0) {
+                reveal(row - 1, col - 1);
+                reveal(row - 1, col);
+                reveal(row - 1, col + 1);
+                reveal(row, col - 1);
+                reveal(row, col + 1);
+                reveal(row + 1, col - 1);
+                reveal(row + 1, col);
+                reveal(row + 1, col + 1);
+            }
+        }
+    }
+
+    function renderBoard() {
+        const boardElement = document.getElementById('board');
+        boardElement.innerHTML = '';
+
+        for (let i = 0; i < rows; i++) {
+            for (let j = 0; j < cols; j++) {
+                const cell = document.createElement('div');
+                cell.classList.add('cell');
+                cell.id = `cell-${i}-${j}`;
+                cell.addEventListener('click', () => reveal(i, j));
+                boardElement.appendChild(cell);
+            }
+            boardElement.appendChild(document.createElement('br'));
+        }
+    }
+
+    createBoard();
+    renderBoard();
+</script>
+    <p>This is a sample Minesweeper game made by untitled himself running on the browser coded in Html, Css, JavaScript, If you lose just refresh the page to start again<br> just click here!</p>
+<div id="board"></div>
+<button onclick="refresh()">Refresh</button>
+<script>
+    function refresh() {
+        window.location.reload();
+    }
+</script>
+</body>
+</html>
