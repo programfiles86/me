@@ -53,6 +53,15 @@
     <header>
         <h1>Untitled World!</h1>
         <p>Untitled's personal page</p>
+        <div class="container">
+  <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+</div>
+<script>
+  function toggleDarkMode() {
+    const body = document.body;
+    body.classList.toggle('dark-mode');
+  }
+</script>
     </header>
 
     <div class="container">
@@ -138,15 +147,7 @@ function checkCode(event) {
 
 <p>All rights reserved for Untitled. Website still under construction...</p>
     <a href="#">Jump to top</a>
-<div class="container">
-  <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
-</div>
-<script>
-  function toggleDarkMode() {
-    const body = document.body;
-    body.classList.toggle('dark-mode');
-  }
-</script>
+
     <button onclick="playSound()">NIGGA</button>
 <audio id="myAudio">
   <source src="nigga.mp3" type="audio/mpeg">
